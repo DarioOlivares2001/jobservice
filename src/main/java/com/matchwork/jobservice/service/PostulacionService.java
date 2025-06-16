@@ -90,5 +90,7 @@ public class PostulacionService {
         return postulacionRepository.findPostulantesConPerfilByTrabajoId(trabajoId);
     }
 
-    
+    public Postulacion guardar(Postulacion postulacion) {
+        return postulacionRepository.save(postulacion);
+    }
 }

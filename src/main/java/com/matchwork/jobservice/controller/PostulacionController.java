@@ -22,8 +22,15 @@ public class PostulacionController {
     }
 
     @PostMapping
-    public ResponseEntity<Postulacion> postular(@RequestParam Long usuarioId, @RequestParam Long trabajoId) {
-        return ResponseEntity.ok(postulacionService.postular(usuarioId, trabajoId));
+    public ResponseEntity<Postulacion> postular(@RequestParam Long usuarioId, @RequestParam Long trabajoId, @RequestParam(required = false) String cvUrl) 
+    {
+        Postulacion p = postulacionService.postular(usuarioId, trabajoId);
+        // Asigna el cvUrl si viene
+        if (cvUrl != null) {
+            p.setCvUrl(cvUrl);
+            postulacionService.guardar(p);
+        }
+        return ResponseEntity.ok(p);
     }
 
     @GetMapping("/usuario/{usuarioId}")

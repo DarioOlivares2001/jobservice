@@ -2,6 +2,8 @@ package com.matchwork.jobservice.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "postulaciones")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Postulacion {
 
     @Id
@@ -31,6 +34,8 @@ public class Postulacion {
     private Job trabajo;
 
     private LocalDateTime fechaPostulacion;
+
+     private String cvUrl;
 
     @PrePersist
     public void prePersist() {
@@ -70,4 +75,14 @@ public class Postulacion {
     public void setFechaPostulacion(LocalDateTime fechaPostulacion) {
         this.fechaPostulacion = fechaPostulacion;
     }
+
+    public String getCvUrl() {
+        return cvUrl;
+    }
+
+    public void setCvUrl(String cvUrl) {
+        this.cvUrl = cvUrl;
+    }
+
+    
 }

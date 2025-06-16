@@ -22,6 +22,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        String method = request.getMethod();
+        
+        // Excluir rutas públicas del filtro JWT
+        return path.startsWith("/api/postulaciones/") ||
+               path.startsWith("/api/match/") ||
+               (method.equals("GET") && path.startsWith("/api/jobs/")) ||
+               path.equals("/api/usuarios/login") ||
+               path.equals("/api/usuarios/register");
+    }
+
+    @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
@@ -33,9 +46,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 if (jwtUtil.validateToken(token)) {
                     Claims claims = jwtUtil.extractClaims(token);
-                    Long id = claims.get("id", Integer.class).longValue(); // extraer ID como Long
-                    String correo = claims.getSubject(); // el "sub" del token es el correo
-                    String rol = claims.get("rol", String.class); // extraer rol
+                    Long id = claims.get("id", Integer.class).longValue();
+                    String correo = claims.getSubject();
+                    String rol = claims.get("rol", String.class);
 
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
@@ -45,11 +58,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             );
 
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                    // Seteamos el usuario autenticado en el contexto de Spring Security
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (Exception e) {
+                System.err.println("Error validando token: " + e.getMessage());
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inválido o expirado");
                 return;
             }
