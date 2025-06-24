@@ -5,10 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.*;
 
-/**
- * DTO que representa la oferta que se envía al cliente (Angular).
- * Incluye now todos los campos, tanto los básicos como los opcionales.
- */
+
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +22,7 @@ public class JobResponse {
     private LocalDateTime fechaPublicacion;
     private String estado;
 
-    /*** Campos adicionales ***/
+    
     private LocalDate fechaLimitePostulacion;
     private String nivelExperiencia;
     private String categoria;

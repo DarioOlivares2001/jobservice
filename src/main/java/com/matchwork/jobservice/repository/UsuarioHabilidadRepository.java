@@ -7,6 +7,6 @@ import java.util.List;
 public interface UsuarioHabilidadRepository
     extends JpaRepository<UsuarioHabilidad, Long> {
 
-    // ← Este método encaja con JPA: busca por usuario.id
+    
     List<UsuarioHabilidad> findByUsuario_Id(Long usuarioId);
 }

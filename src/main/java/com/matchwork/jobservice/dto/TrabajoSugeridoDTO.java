@@ -22,7 +22,7 @@ public class TrabajoSugeridoDTO {
     private String estado;
     private int puntajeAfinidad;
 
-    /*** Campos adicionales (se incluyen para mostrar “más datos” en el cliente si se desea) ***/
+    
     private LocalDate fechaLimitePostulacion;
     private String nivelExperiencia;
     private String categoria;
@@ -38,7 +38,7 @@ public class TrabajoSugeridoDTO {
     private String logoUrl;
     private String etiquetas;
 
-    /** Constructor que toma un Job y le agrega puntajeAfinidad **/
+    
     public TrabajoSugeridoDTO(Job job, int puntajeAfinidad) {
         this.id = job.getId();
         this.creatorId = job.getCreatorId();
@@ -52,7 +52,7 @@ public class TrabajoSugeridoDTO {
         this.estado = job.getEstado();
         this.puntajeAfinidad = puntajeAfinidad;
 
-        // Ahora asignamos también los campos opcionales
+       
         this.fechaLimitePostulacion = job.getFechaLimitePostulacion();
         this.nivelExperiencia = job.getNivelExperiencia();
         this.categoria = job.getCategoria();

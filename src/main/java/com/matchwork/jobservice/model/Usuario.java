@@ -1,4 +1,3 @@
-// src/main/java/com/matchwork/jobservice/model/Usuario.java
 package com.matchwork.jobservice.model;
 
 import jakarta.persistence.Entity;
@@ -6,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuarios") // Nombre real de la tabla del microservicio user_service
+@Table(name = "usuarios") 
 public class Usuario {
 
     @Id

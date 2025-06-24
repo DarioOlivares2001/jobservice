@@ -8,7 +8,7 @@ public class PostulanteConPerfilDTO {
     private String nombreUsuario;
     private String tituloProfesional;
     private String fotoUrl;
-    private String presentacion;       // campo de PerfilProfesional
+    private String presentacion;      
     private LocalDateTime fechaPostulacion;
 
     public PostulanteConPerfilDTO(

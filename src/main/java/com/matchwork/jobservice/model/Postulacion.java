@@ -23,10 +23,7 @@ public class Postulacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * Mantengo sólo el ID primitivo que mapea a la columna física `usuario_id`.
-     * Hibernate, por convención, mapeará esta propiedad a esa columna.
-     */
+  
     private Long usuarioId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,7 +39,7 @@ public class Postulacion {
         this.fechaPostulacion = LocalDateTime.now();
     }
 
-    // ─── Getters / Setters ───
+   
 
     public Long getId() {
         return id;

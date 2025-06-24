@@ -19,26 +19,6 @@ public interface PostulacionRepository extends JpaRepository<Postulacion, Long> 
 
 
 
-    /**
-     * Obtiene todos los postulantes (mini‐perfil) para un trabajo específico.
-     * JOIN a `perfil_profesional` consultando por la columna `usuario_id`.
-     */
-   /* @Query("""
-      SELECT new com.matchwork.jobservice.dto.MiniPerfilDTO(
-         p.id,
-         u.nombre,           
-         p.fotoUrl,
-         p.titulo
-      )
-      FROM Postulacion pst
-      JOIN PerfilProfesional p ON p.id = pst.usuarioId
-      JOIN Usuario u ON u.id = p.id
-      WHERE pst.trabajo.id = :trabajoId
-    """)
-    List<MiniPerfilDTO> findMiniPerfilesByTrabajoId(@Param("trabajoId") Long trabajoId);*/
-
-
-
     @Query("""
     SELECT new com.matchwork.jobservice.dto.PostulanteConPerfilDTO(
       pst.id,

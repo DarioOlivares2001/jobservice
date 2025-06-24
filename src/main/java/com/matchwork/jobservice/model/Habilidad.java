@@ -1,4 +1,3 @@
-// src/main/java/com/matchwork/jobservice/model/Habilidad.java
 package com.matchwork.jobservice.model;
 
 import jakarta.persistence.*;

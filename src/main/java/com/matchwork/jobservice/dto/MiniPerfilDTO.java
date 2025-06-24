@@ -1,9 +1,8 @@
-// src/main/java/com/matchwork/jobservice/dto/MiniPerfilDTO.java
 package com.matchwork.jobservice.dto;
 
 public class MiniPerfilDTO {
-    private Long usuarioId;      // ID del usuario/profesional
-    private String nombreUsuario; // (opcional) si lo tienes en Usuario
+    private Long usuarioId;      
+    private String nombreUsuario; 
     private String fotoUrl;
     private String tituloProfesional;
 

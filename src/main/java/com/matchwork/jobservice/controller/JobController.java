@@ -20,14 +20,14 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    /** Listar todos (solo los “ACTIVO”) **/
+   
     @GetMapping
     public ResponseEntity<List<JobResponse>> listar() {
         return ResponseEntity.ok(jobService.findAll());
     }
 
-    /** Crear nueva oferta vía query‐param creatorId **/
-    @PostMapping            // equivale a POST "/api/jobs"
+   
+    @PostMapping            
     public ResponseEntity<JobResponse> crear(
             @RequestParam("creatorId") Long creatorId,
             @RequestBody JobRequest payload
@@ -36,7 +36,7 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-     /** Listar trabajos por creatorId **/
+    
     @GetMapping("/creator/{creatorId}")
     public ResponseEntity<List<JobResponse>> listarPorCreator(@PathVariable Long creatorId) {
         List<JobResponse> lista = jobService.findByCreator(creatorId);
@@ -44,20 +44,20 @@ public class JobController {
     }
 
 
-    /** Obtener un trabajo por ID **/
+   
     @GetMapping("/{id}")
     public ResponseEntity<JobResponse> getJobById(@PathVariable Long id) {
         return ResponseEntity.ok(jobService.findById(id));
     }
 
-    /** Eliminar (hard delete) **/
+   
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteJob(@PathVariable Long id) {
         jobService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    /** Actualizar oferta existente **/
+   
     @PutMapping("/{id}")
     public ResponseEntity<JobResponse> updateJob(
             @PathVariable Long id,
@@ -68,7 +68,7 @@ public class JobController {
         return ResponseEntity.ok(updated);
     }
 
-    /** Trabajos aleatorios **/
+   
     @GetMapping("/random")
     public ResponseEntity<List<JobResponse>> trabajosAleatorios(
             @RequestParam(defaultValue = "5") int limit
@@ -76,13 +76,13 @@ public class JobController {
         return ResponseEntity.ok(jobService.findRandom(limit));
     }
 
-    /** Últimos trabajos **/
+    
     @GetMapping("/recientes")
     public ResponseEntity<List<JobResponse>> listarRecientes() {
         return ResponseEntity.ok(jobService.findLatest(10));
     }
 
-    /** Archivar o eliminar según reglas de negocio **/
+   
     @PutMapping("/{id}/archivar-o-eliminar")
     public ResponseEntity<String> archivarOEliminar(@PathVariable Long id) {
         boolean eliminado = jobService.archivarOEliminarTrabajo(id);
